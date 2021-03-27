@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Home</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/style.css">
+<script src='https://unpkg.com/tesseract.js@v2.0.2/dist/tesseract.min.js'></script>
+</head>
+<body>
+	<script>
+        Tesseract.recognize(
+            'https://firebasestorage.googleapis.com/v0/b/kv-digital-card.appspot.com/o/Hackathontemp%2Fhacktext.jpg?alt=media&token=95150e18-587e-40b8-ad3a-d5d2552727b4',
+            'eng',
+            { logger: m => console.log(m) }
+        ).then(({ data: { text } }) => {
+            console.log(text);
+        })
+    </script>
+
+<h2 class="text-center">Custom File Input With Image Preview</h2>
+
+<div class="profile-images-card">
+	<div class="profile-images">
+		<img src="images/profile.png" id="upload-img">
+	</div>
+	<div class="custom-file">
+		<label for="fileupload">Upload Profile</label>
+		<input type="file" id="fileupload">
+	</div>
+</div>
+
+
+
+
+
+<script src="js/jquery-latest.min.js"></script>
+<script>
+	$(function(){
+		$("#fileupload").change(function(event) {
+			var x = URL.createObjectURL(event.target.files[0]);
+			$("#upload-img").attr("src",x);
+			console.log(event);
+		});
+	})
+</script>
+</body>
+</html>
